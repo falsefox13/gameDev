@@ -516,7 +516,7 @@ MonoBehaviour:
   step: 1.6
   movementFrequency: 0.2
   counter: 0
-  tail: {fileID: 0}
+  tail: {fileID: 2145534456}
   deltaPos: []
 --- !u!4 &110451620
 Transform:
@@ -763,7 +763,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 33.69, y: -23.84, z: 0}
 --- !u!1001 &195434130
 PrefabInstance:
@@ -993,7 +993,7 @@ Transform:
   m_LocalScale: {x: 40, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &248767878
 PrefabInstance:
@@ -1759,7 +1759,7 @@ Transform:
   m_LocalScale: {x: 40, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1001 &436168430
 PrefabInstance:
@@ -2175,6 +2175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 110451618}
+  speed: 5.3
 --- !u!1001 &555545264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2507,7 +2508,7 @@ Transform:
   m_LocalScale: {x: 40, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &669880918
 PrefabInstance:
@@ -2805,12 +2806,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 724592426}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &738757826 stripped
+--- !u!1 &738757826
 GameObject:
+  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 1000010917563242, guid: 6e2574af69e1ddd4497a11adb45777a1,
     type: 3}
   m_PrefabInstance: {fileID: 793806830}
   m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 738757828}
+  - component: {fileID: 738757829}
+  - component: {fileID: 738757827}
+  m_Layer: 0
+  m_Name: Missing Prefab (Dummy)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!114 &738757827
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2823,6 +2837,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe5d3dbbf92e84e4fba6f90389766a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &738757828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 793806830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738757826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1983925218}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!135 &738757829
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -4321,7 +4349,7 @@ Transform:
   m_LocalScale: {x: 40, y: 1, z: 40}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1263293646
 PrefabInstance:
@@ -4854,7 +4882,7 @@ Transform:
   - {fileID: 2046894481}
   - {fileID: 67967533}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1337519240
 PrefabInstance:
@@ -5289,7 +5317,7 @@ Transform:
   m_LocalScale: {x: 40, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1001 &1421431065
 PrefabInstance:
@@ -6456,7 +6484,7 @@ GameObject:
   - component: {fileID: 1885359013}
   m_Layer: 0
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6932,6 +6960,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1980818814}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1983925217
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 793806830}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983925218}
+  m_Layer: 0
+  m_Name: Chicken (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1983925218
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 793806830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983925217}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 738757828}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1996011476
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7702,7 +7761,7 @@ GameObject:
   - component: {fileID: 2145534458}
   m_Layer: 0
   m_Name: Tail
-  m_TagString: Untagged
+  m_TagString: Snake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public List<Vector3> deltaPos;
 
     private List<Rigidbody> nodes;
+    private int initialNodes = 3;
 
     private Rigidbody mainBody;
     private Rigidbody headBody;
@@ -41,10 +42,10 @@ public class PlayerController : MonoBehaviour
 
         deltaPos = new List<Vector3>()
         {
-            new Vector3(-step, 0f, 0f),
-            new Vector3(0f, 0f, step),
-            new Vector3(step, 0f, 0f),
-            new Vector3(0f, 0f, -step)
+            Vector3.left * step,
+            Vector3.forward * step,
+            Vector3.right * step,
+            Vector3.back * step
         };
     }
 
@@ -65,9 +66,10 @@ public class PlayerController : MonoBehaviour
     void InitSnakeNodes()
     {
         nodes = new List<Rigidbody>();
-        nodes.Add(_tr.GetChild(0).GetComponent<Rigidbody>());
-        nodes.Add(_tr.GetChild(1).GetComponent<Rigidbody>());
-        nodes.Add(_tr.GetChild(2).GetComponent<Rigidbody>());
+        for(int i = 0; i < initialNodes; i++)
+        {
+            nodes.Add(_tr.GetChild(i).GetComponent<Rigidbody>());
+        }
 
         headBody = nodes[0];
     }
@@ -81,24 +83,18 @@ public class PlayerController : MonoBehaviour
     void InitPlayer()
     {
         SetDirectionRandom();
-        switch(direction)
+        float offset = 1f;
+        for (int i = 1; i < initialNodes; i++)
         {
-            case Direction.RIGHT:
-                nodes[1].position = nodes[0].position - new Vector3(nodeDist, 0f, 0f);
-                nodes[2].position = nodes[0].position - new Vector3(nodeDist * 2f, 0f, 0f);
-                break;
-            case Direction.LEFT:
-                nodes[1].position = nodes[0].position + new Vector3(nodeDist, 0f, 0f);
-                nodes[2].position = nodes[0].position + new Vector3(nodeDist * 2f, 0f, 0f);
-                break;
-            case Direction.UP:
-                nodes[1].position = nodes[0].position - new Vector3(0f, 0f, nodeDist);
-                nodes[2].position = nodes[0].position - new Vector3(0f, 0f, nodeDist * 2);
-                break;
-            case Direction.DOWN:
-                nodes[1].position = nodes[0].position + new Vector3(0f, 0f, nodeDist);
-                nodes[2].position = nodes[0].position + new Vector3(0f, 0f, nodeDist * 2);
-                break;
+            if(direction == Direction.RIGHT)
+                nodes[i].position = nodes[0].position + Vector3.left * nodeDist * offset;
+            else if(direction == Direction.LEFT)
+                nodes[i].position = nodes[0].position - Vector3.left * nodeDist * offset;
+            else if (direction == Direction.UP)
+                nodes[i].position = nodes[0].position + Vector3.back * nodeDist * offset;
+            else if (direction == Direction.DOWN)
+                nodes[i].position = nodes[0].position - Vector3.back * nodeDist * offset;
+            offset *= 2f;
         }
     }
 
@@ -120,7 +116,13 @@ public class PlayerController : MonoBehaviour
 
         if (createNewTail)
         {
-
+            Vector3 pos = nodes[nodes.Count - 1].transform.position;
+            nodes.Add(
+               Instantiate(tail.GetComponent<Rigidbody>(),
+               new Vector3(pos.x, pos.y, pos.z),
+               Quaternion.identity,
+               transform) as Rigidbody);
+            createNewTail = false;
         }
     }
 
@@ -142,7 +144,7 @@ public class PlayerController : MonoBehaviour
             other.gameObject.SetActive(false);
             createNewTail = true;
         }
-        if (other.tag == "Wall")
+        else if (other.tag == "Wall" || other.tag == "Snake")
         {
             gameObject.SetActive(false);
         }
@@ -150,16 +152,10 @@ public class PlayerController : MonoBehaviour
 
     public void SetInputDirection(Direction dir)
     {
-       if(dir == Direction.UP && direction == Direction.DOWN ||
-          dir == Direction.DOWN && direction == Direction.UP ||
-          dir == Direction.RIGHT && direction == Direction.LEFT ||
-          dir == Direction.LEFT && direction == Direction.RIGHT )
-        {
+        if(System.Math.Abs(dir - direction) == 2)
             return;
-        }
         Quaternion deltaRotation = Quaternion.Euler(new Vector3(0, 90, 0));
         headBody.MoveRotation(headBody.rotation * deltaRotation);
-
 
         direction = dir;
         ForceMove();

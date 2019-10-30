@@ -5,7 +5,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public GameObject player;
-
+    [Range(1.0f, 10.0f)]
+    public float speed = 3.0f;
     private Vector3 offset;
 
     void Start()
@@ -13,8 +14,8 @@ public class CameraController : MonoBehaviour
         offset = transform.position - player.transform.position;
     }
 
-    void LateUpdate()
+    void Update()
     {
-        transform.position = player.transform.position + offset;
+        transform.position = Vector3.MoveTowards(transform.position, player.transform.position + offset, Time.deltaTime * speed);
     }
 }
